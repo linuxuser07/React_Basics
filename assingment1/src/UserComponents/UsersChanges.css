@@ -1,0 +1,24 @@
+.userInputMain {
+    text-align: center;
+}
+
+.userInput {
+    text-align: center;
+    border: 1px solid;
+    height: 25px;
+    width: 220px;
+}
+.userInputMain label{
+    padding-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    color: blue
+}
+.OutPut {
+    width: 60%;
+    margin: 16px auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+}
