@@ -3,7 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 
 const App = props => {
-  
+
   //container of state try to limit as much as possible. 
   //smart stateful component 
   const [personsState, setPersonsState] = useState({
@@ -11,10 +11,11 @@ const App = props => {
       { name: 'Max', age: 28 },
       { name: 'Manu', age: 29 },
       { name: 'Stephanie', age: 26 }
-    ]
+    ],
+    showPersons: false
   });
 
- // const [otherState, setOtherState] = useState('some other value');
+  // const [otherState, setOtherState] = useState('some other value');
 
   //console.log(personsState, otherState);
 
@@ -41,37 +42,49 @@ const App = props => {
   };
 
   //unable to use all the css features 
-  const style ={
+  const style = {
     backgroundColor: 'white',
     font: 'inherit',
     border: '1px solid blue',
     padding: '8px',
     cursor: 'pointer'
   };
-  
+
+  const togglePersonsHandler = () => {
+    const doesShow = personsState.showPersons;
+    setPersonsState({
+      showPersons: !doesShow
+    });
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'm a React App</h1>
       <p>This is really working!</p>
-      <button style = {style}
-      onClick={() => switchNameHandler('Maximilian!!!')}>Switch Name</button>
-      <Person
-        name={personsState.persons[0].name}
-        age={personsState.persons[0].age}
-      />
-      <Person
-        name={personsState.persons[1].name}
-        age={personsState.persons[1].age}
-        //use bind syntax to get better performance
-        click={switchNameHandler.bind(this, 'Max!')}
-        changed ={nameChangeHandler}
-      >
-        My Hobbies: Racing
+      <button style={style}
+        onClick={togglePersonsHandler()}>Switch Name</button>
+      { personsState.showPersons ? 
+      <div >
+        <Person
+          name={personsState.persons[0].name}
+          age={personsState.persons[0].age}
+        />
+        <Person
+          name={personsState.persons[1].name}
+          age={personsState.persons[1].age}
+          //use bind syntax to get better performance
+          click={switchNameHandler.bind(this, 'Max!')}
+          changed={nameChangeHandler}
+        >
+          My Hobbies: Racing
       </Person>
-      <Person
-        name={personsState.persons[2].name}
-        age={personsState.persons[2].age}
-      />
+        <Person
+          name={personsState.persons[2].name}
+          age={personsState.persons[2].age}
+        />
+      </div> :
+        null
+      }
     </div>
   );
   // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
